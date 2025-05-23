@@ -1,0 +1,170 @@
+body {
+    font-family: 'Cairo', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #e9f5f5; /* لون خلفية ألطف */
+    margin: 0;
+    direction: rtl; /* اتجاه النص من اليمين لليسار */
+    text-align: right; /* محاذاة النص لليمين */
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px; /* حواف أكثر دائرية */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* ظل أعمق */
+    width: 100%;
+    max-width: 380px; /* **تعديل: أصغر قليلاً على الشاشات الكبيرة** */
+    text-align: center;
+    transition: transform 0.3s ease-in-out; /* إضافة تأثير للتحويم/التفاعل */
+}
+
+.container:hover {
+    transform: translateY(-5px); /* رفع خفيف عند التحويم */
+}
+
+h1 {
+    color: #2c3e50; /* لون أغمق وأكثر احترافية */
+    margin-bottom: 25px;
+    font-size: 2.2em;
+    border-bottom: 3px solid #007bff;
+    padding-bottom: 10px;
+    display: inline-block;
+    transition: color 0.3s ease;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 1.1em;
+    text-align: right; /* ضمان المحاذاة لليمين */
+}
+
+.input-group input[type="number"] {
+    width: 100%; /* اجعله يملأ العرض بالكامل */
+    padding: 12px 15px; /* بادينج أكبر قليلا */
+    border: 1px solid #dcdcdc; /* حدود أفتح */
+    border-radius: 8px; /* حواف أكثر دائرية */
+    font-size: 1.05em;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group input[type="number"]:focus {
+    border-color: #007bff; /* لون الحدود عند التركيز */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* ظل حول الحقل عند التركيز */
+    outline: none; /* إزالة الخط الأزرق الافتراضي */
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* تأثيرات أفضل للزر */
+    width: 100%;
+    margin-top: 10px;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2); /* ظل للزر */
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px); /* رفع الزر قليلاً عند التحويم */
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
+}
+
+.result {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 1.2em;
+    font-weight: bold;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column; /* لجعل السطرين يظهران فوق بعض */
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #eee;
+    background-color: #f9f9f9;
+    text-align: center;
+    line-height: 1.6;
+    transition: all 0.5s ease-out; /* تأثيرات ظهور النتائج */
+    opacity: 0; /* مخفية في البداية */
+    transform: translateY(20px); /* متحركة للأسفل */
+    visibility: hidden; /* مخفية تمامًا */
+}
+
+.result.visible {
+    opacity: 1; /* تصبح مرئية */
+    transform: translateY(0); /* تعود لمكانها */
+    visibility: visible;
+}
+
+.result span { /* للتحكم في الأرقام والتصنيفات بشكل منفصل */
+    display: block;
+    margin-bottom: 5px;
+}
+
+.result span.bmi-value {
+    font-size: 1.5em;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+/* الألوان لتصنيف النتائج - ألوان أكثر هدوءًا */
+.result.underweight {
+    background-color: #fff3e0; /* برتقالي فاتح جدا */
+    color: #e65100;
+    border-color: #ffc107;
+}
+
+.result.normal {
+    background-color: #e8f5e9; /* أخضر فاتح جدا */
+    color: #2e7d32;
+    border-color: #4caf50;
+}
+
+.result.overweight {
+    background-color: #ffe0b2; /* برتقالي محمر فاتح */
+    color: #ef6c00;
+    border-color: #ff9800;
+}
+
+.result.obese {
+    background-color: #ffebee; /* أحمر فاتح جدا */
+    color: #c62828;
+    border-color: #f44336;
+}
+
+/* تحسينات للشاشات الصغيرة */
+@media (max-width: 600px) {
+    .container {
+        margin: 20px;
+        padding: 20px;
+        max-width: 90%; /* يسمح لها بالتمدد أكثر على الجوالات الصغيرة */
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    button {
+        font-size: 1em;
+        padding: 12px 20px;
+    }
+    .result {
+        font-size: 1.1em;
+        padding: 15px;
+    }
+}
+
+
+
